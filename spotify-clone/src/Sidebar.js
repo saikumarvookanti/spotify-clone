@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import { useDataLayerValue } from './DataLayer';
 
-function Sidebar() {
+function Sidebar({spotify}) {
     const [{playlists},dispatch]=useDataLayerValue();
     return (
         <div className='sidebar'>
@@ -19,9 +19,9 @@ function Sidebar() {
             {/* <strong className='sidebar_title'>PLAYLISTS</strong> */}
             <hr />
 
-        {playlists?.items?.map(playlist =>{
-            <SidebarOption title={playlist.name}/>
-        })}
+        {playlists?.items?.map(playlist =>
+            <SidebarOption title={playlist.name} playId={playlist.id} spotify={spotify}/>
+        )}
         </div>
     );
 }
