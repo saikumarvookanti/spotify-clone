@@ -24,11 +24,30 @@ function App() {
       
       spotify.setAccessToken(_token);
       spotify.getMe().then(user=>{
+        console.log(user);
         dispatch({
           type:'SET_USER',
           user:user
         });
+      });
+
+      spotify.getUserPlaylists().then((playlists)=>{
+        console.log(playlists);
+        dispatch({
+          type:"SET_PLAYLISTS",
+          playlists:playlists,
+        });
+
+      spotify.getPlaylist("37i9dQZF1DX6XE7HRLM75P").then(response=>{
+        console.log(response)
+        dispatch({
+          type:"SET_DISCOVERY_WEEKLY",
+          discover_weekly:response,
+        });
       })
+
+
+      });
     }
 
   }, [])
